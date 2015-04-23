@@ -31,14 +31,21 @@
 
 #include "networks.h"
 
+#define SERVER_NAME 250
+
 int main(int argc, char *argv[]) {
    int server_socket= 0;   //socket descriptor for the server socket
    int client_socket= 0;   //socket descriptor for the client socket
    char *buf;              //buffer for receiving from client
    int buffer_size= 1024;  //packet size variable
    int message_len= 0;     //length of the received message
+   char name[SERVER_NAME];
    
    printf("sockaddr: %lu sockaddr_in %lu\n", sizeof(struct sockaddr), sizeof(struct sockaddr_in));
+   
+   gethostname(name, SERVER_NAME);
+   
+   printf("Server Name: %s\n", name);
    
    //create packet buffer
    buf=  (char *) malloc(buffer_size);
